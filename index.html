@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VA Combined Rating &amp; Pay Calculator (Unofficial)</title>
+  <meta name="description" content="Free, unofficial VA combined disability rating calculator using 38 CFR § 4.25 and § 4.26, with 2026 VA.gov compensation rates. Runs entirely in your browser." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="banner">
+    <div class="wrap">
+      <h1>VA Combined Rating &amp; Monthly Pay Calculator</h1>
+      <p class="sub">Unofficial estimate. Uses only official VA and federal rules. Nothing you enter leaves your browser.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="alert">
+      <strong>Not affiliated with the U.S. Department of Veterans Affairs.</strong>
+      This tool is an estimate based on published federal rules. It is not legal or medical advice and not an official VA decision.
+      Your actual rating comes from VA after its review. Questions? VA Benefits Hotline: <a href="tel:18008271000">800-827-1000</a> (TTY: 711).
+    </div>
+
+    <section class="card">
+      <h2>1. Your individual ratings</h2>
+      <p class="hint">Add each rated condition. If a condition affects an arm or leg, choose which one. That's how the bilateral factor (38 CFR § 4.26) is applied.</p>
+      <div id="ratings"></div>
+      <button type="button" id="add" class="btn-secondary">+ Add a rating</button>
+    </section>
+
+    <section class="card">
+      <h2>2. Your dependents <span class="opt">(for monthly pay)</span></h2>
+      <div class="grid">
+        <label><input type="checkbox" id="spouse" /> Spouse</label>
+        <label><input type="checkbox" id="spouseAA" disabled /> Spouse receives Aid and Attendance</label>
+        <label>Children under 18 <input type="number" id="u18" min="0" max="20" value="0" /></label>
+        <label>Children 18–23 in school <input type="number" id="school" min="0" max="20" value="0" /></label>
+        <label>Dependent parents
+          <select id="parents"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
+        </label>
+      </div>
+    </section>
+
+    <section class="card result" aria-live="polite">
+      <h2>3. Result</h2>
+      <div id="result"><p class="hint">Add at least one rating above.</p></div>
+    </section>
+
+    <section class="card">
+      <h2>How this is calculated</h2>
+      <ol class="how">
+        <li><strong>Combined rating (38 CFR § 4.25).</strong> VA doesn't add ratings. Each rating applies to the "efficiency" left over after the more severe ones. Ratings are combined highest first, and the total is rounded to the nearest 10 only once, at the end. Values ending in 5 round up.</li>
+        <li><strong>Bilateral factor (38 CFR § 4.26).</strong> If both arms or both legs have a compensable rating, those ratings are combined first, then 10% of that value is <em>added</em>. The result is treated as one rating. If leaving a rating out of the bilateral calculation would give you a higher result, that's used instead (§ 4.26(d)).</li>
+        <li><strong>Monthly pay.</strong> Taken from VA.gov's rate tables effective December 1, 2025, using VA.gov's own method: basic rate, plus each additional child, plus Aid and Attendance.</li>
+      </ol>
+      <p class="hint">Not modeled: paired skeletal muscles under § 4.26, Special Monthly Compensation (SMC), TDIU, and helpless-child rates. Talk to VA or an accredited representative about these.</p>
+      <h3>Official sources</h3>
+      <ul>
+        <li><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.25" target="_blank" rel="noopener">38 CFR § 4.25, Combined ratings table (eCFR.gov)</a></li>
+        <li><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.26" target="_blank" rel="noopener">38 CFR § 4.26, Bilateral factor (eCFR.gov)</a></li>
+        <li><a href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener">Current Veterans disability compensation rates (VA.gov)</a></li>
+        <li><a href="https://www.va.gov/disability/about-disability-ratings/" target="_blank" rel="noopener">About VA disability ratings (VA.gov)</a></li>
+      </ul>
+      <p class="hint">Rates last checked against VA.gov: October 3, 2026. Rates change every December.</p>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Built by a veteran, for veterans. Free and open source. Not a VA product.<br />
+    If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

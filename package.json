@@ -1,0 +1,8 @@
+{
+  "name": "va-ratings-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test tests/" },
+  "license": "MIT"
+}
