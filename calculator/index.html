@@ -3,77 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VA Combined Rating &amp; Pay Calculator (Unofficial)</title>
-  <meta name="description" content="Free, unofficial VA combined disability rating calculator using 38 CFR § 4.25 and § 4.26, with 2026 VA.gov compensation rates. Runs entirely in your browser." />
+  <title>VA Disability Rating Calculator (2026 Rates) | Salty &amp; Rated</title>
+  <meta name="description" content="Free, unofficial VA combined disability rating and monthly pay calculator. Uses 38 CFR § 4.25 and § 4.26 and VA.gov's rates effective Dec 1, 2025, and shows every step." />
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <header class="banner">
     <div class="wrap">
-      <h1>VA Combined Rating &amp; Monthly Pay Calculator</h1>
-      <p class="sub">Unofficial estimate. Uses only official VA and federal rules. Nothing you enter leaves your browser.</p>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Salty &amp; Rated</a> › <span>VA Disability Rating Calculator</span></nav>
+      <h1>VA Disability Rating Calculator</h1>
+      <p class="sub">Combined rating, VA rating, and estimated monthly pay, worked out with the VA's published rules.</p>
+      <span class="badge">✓ Uses VA.gov rates effective Dec 1, 2025 · last checked Oct 3, 2026</span>
     </div>
   </header>
 
   <main class="wrap">
-    <div class="alert">
-      <strong>Not affiliated with the U.S. Department of Veterans Affairs.</strong>
-      This tool is an estimate based on published federal rules. It is not legal or medical advice and not an official VA decision.
-      Your actual rating comes from VA after its review. Questions? VA Benefits Hotline: <a href="tel:18008271000">800-827-1000</a> (TTY: 711).
+    <p class="trust">Free. No sign-up, no lead form, no phone calls. Nothing you enter leaves your browser. Built by a Navy veteran, not a law firm.</p>
+
+    <div class="alert" role="note">
+      <strong>This is not legal or medical advice.</strong> This calculator is an assistant that uses public information: federal regulations and VA.gov's published rate tables. It is not an official VA decision, and it isn't affiliated with the U.S. Department of Veterans Affairs. Your actual rating comes from VA after its review. For help with a claim, talk to an accredited VSO, attorney, or claims agent. VSO help is free. VA Benefits Hotline: <a href="tel:18008271000">800-827-1000</a> (TTY: 711).
     </div>
 
     <section class="card">
-      <h2>1. Your individual ratings</h2>
-      <p class="hint">Add each rated condition. If a condition affects an arm or leg, choose which one. That's how the bilateral factor (38 CFR § 4.26) is applied.</p>
+      <h2>Enter your disability ratings</h2>
+      <p class="hint">Add each rated condition. If a condition affects an arm or leg, pick which one. That's how the bilateral factor (38 CFR § 4.26) is applied.</p>
       <div id="ratings"></div>
       <button type="button" id="add" class="btn-secondary">+ Add a rating</button>
-    </section>
 
-    <section class="card">
-      <h2>2. Your dependents <span class="opt">(changes pay at 30% and up)</span></h2>
+      <h3 class="deps-h">Dependents <span class="opt">(change pay at 30% and up)</span></h3>
       <div class="grid">
         <label class="check"><input type="checkbox" id="spouse" /> Spouse</label>
         <label class="check"><input type="checkbox" id="spouseAA" disabled /> Spouse receives Aid and Attendance</label>
         <label>Dependent parents
           <select id="parents"><option value="0">None</option><option value="1">1 parent</option><option value="2">2 parents</option></select>
         </label>
-        <label>Children under 18
-          <select id="u18"></select>
-        </label>
-        <label>Children 18–23 in school
-          <select id="school"></select>
-        </label>
+        <label>Children under 18 <select id="u18"></select></label>
+        <label>Children 18–23 in school <select id="school"></select></label>
       </div>
     </section>
 
-    <section class="card result" aria-live="polite">
-      <h2>3. Result</h2>
-      <div id="result"><p class="hint">Add at least one rating above.</p></div>
+    <section class="card result" id="results" aria-live="polite">
+      <h2>Your results</h2>
+      <div id="result"><p class="hint">Add at least one rating above 0%.</p></div>
     </section>
 
     <section class="card">
-      <h2>How this is calculated</h2>
-      <ol class="how">
-        <li><strong>Combined rating (38 CFR § 4.25).</strong> VA doesn't add ratings. Each rating applies to the "efficiency" left over after the more severe ones. Ratings are combined highest first, and the total is rounded to the nearest 10 only once, at the end. Values ending in 5 round up.</li>
-        <li><strong>Bilateral factor (38 CFR § 4.26).</strong> If both arms or both legs have a compensable rating, those ratings are combined first, then 10% of that value is <em>added</em>. The result is treated as one rating. If leaving a rating out of the bilateral calculation would give you a higher result, that's used instead (§ 4.26(d)).</li>
-        <li><strong>Monthly pay.</strong> Taken from VA.gov's rate tables effective December 1, 2025, using VA.gov's own method: basic rate, plus each additional child, plus Aid and Attendance.</li>
-      </ol>
-      <p class="hint">Not modeled: paired skeletal muscles under § 4.26, Special Monthly Compensation (SMC), TDIU, and helpless-child rates. Talk to VA or an accredited representative about these.</p>
-      <h3>Official sources</h3>
+      <h2>Regulations used in this calculator</h2>
+      <table class="rules">
+        <thead><tr><th>Rule</th><th>What it does here</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.25" target="_blank" rel="noopener">38 CFR § 4.25</a><br /><small>Combined ratings table</small></td>
+            <td>Combines your ratings from most to least severe, using "efficiency" instead of addition. Each step matches the regulation's Table I. The total is rounded to the nearest 10 once, at the end, and values ending in 5 round up.</td></tr>
+          <tr><td><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.26" target="_blank" rel="noopener">38 CFR § 4.26</a><br /><small>Bilateral factor</small></td>
+            <td>When both arms or both legs have a compensable rating, those ratings are combined first and 10% of that value is added. The result is then treated as one rating. If leaving a rating out of that group gives a higher result, that's used instead (§ 4.26(d)).</td></tr>
+          <tr><td><a href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener">VA.gov compensation rates</a><br /><small>Effective Dec 1, 2025</small></td>
+            <td>Monthly pay by rating and dependents. Uses VA.gov's method: basic rate, plus each additional child, plus Aid and Attendance.</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Not modeled: paired skeletal muscles under § 4.26, Special Monthly Compensation (SMC), Total Disability based on Individual Unemployability (TDIU), and helpless-child rates.</p>
+    </section>
+
+    <section class="card">
+      <h2>Learn more</h2>
+      <details>
+        <summary>How VA math works</summary>
+        <p>VA doesn't add ratings together. Under 38 CFR § 4.25, each rating applies to the part of you that's still "efficient" after the more severe ratings are counted. The regulation's own example: a 60% rating leaves you 40% efficient. A further 30% rating takes 30% of that remaining 40%, leaving 28% efficiency. That makes you 72% disabled.</p>
+        <p>The combined value is rounded to the nearest 10 only once, after all your ratings are combined. 72 becomes a 70% VA rating, and 65 becomes 70% because values ending in 5 round up.</p>
+      </details>
+      <details>
+        <summary>Understanding the bilateral factor</summary>
+        <p>Under 38 CFR § 4.26, if you have compensable ratings on both arms or both legs, those ratings are combined with each other first. Then 10% of that combined value is <em>added</em>, not combined. The result counts as one rating for everything after that.</p>
+        <p>The regulation's example: ratings of 60%, 20%, 10% and 10%, where the two 10% ratings are bilateral. The 10s combine to 19, and adding 10% gives 21. The order of severity becomes 60, 21, 20. 60 and 21 combine to 68, and 68 and 20 combine to 74, which rounds to a 70% VA rating.</p>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>2026 VA disability pay: veteran alone</h2>
+      <p class="hint">VA.gov rates effective December 1, 2025, with no dependents. Annual is monthly × 12.</p>
+      <table class="rates" id="ratesTable"><thead><tr><th>VA rating</th><th>Monthly</th><th>Annual</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card">
+      <h2>Common rating combinations</h2>
+      <p class="hint">Calculated with the same § 4.25 rules as the calculator above.</p>
+      <table class="rates" id="examplesTable"><thead><tr><th>Ratings</th><th>Combined value</th><th>VA rating</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card">
+      <h2>Frequently asked questions</h2>
+      <details><summary>Why doesn't VA just add my ratings together?</summary>
+        <p>Because 38 CFR § 4.25 measures how much each condition reduces the "efficiency" that's left after your more severe conditions. Two 50% ratings don't make 100%: the second 50% applies to the half that's left, so they combine to 75, which rounds to an 80% VA rating.</p></details>
+      <details><summary>How do dependents affect my pay?</summary>
+        <p>At 10% and 20%, VA.gov says you don't get a higher rate for a spouse, child, or parent. At 30% and above, the basic rate goes up for a spouse, children, and dependent parents. Each child after the first adds a set amount, and a spouse receiving Aid and Attendance adds another.</p></details>
+      <details><summary>When do VA disability rates change?</summary>
+        <p>VA.gov says VA is required by law to match the cost-of-living adjustment made to Social Security benefits. The current rates took effect December 1, 2025. This page is updated when VA publishes new rates.</p></details>
+      <details><summary>What does the "next tier" box mean?</summary>
+        <p>It shows how far your combined value is from rounding up to the next 10%, and what one more rating would do under the § 4.25 math. It's for understanding the math only. Ratings are based on medical evidence, not on reaching a number.</p></details>
+    </section>
+
+    <section class="card">
+      <h2>Data sources</h2>
       <ul>
         <li><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.25" target="_blank" rel="noopener">38 CFR § 4.25, Combined ratings table (eCFR.gov)</a></li>
         <li><a href="https://www.ecfr.gov/current/title-38/chapter-I/part-4/subpart-A/section-4.26" target="_blank" rel="noopener">38 CFR § 4.26, Bilateral factor (eCFR.gov)</a></li>
         <li><a href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener">Current Veterans disability compensation rates (VA.gov)</a></li>
         <li><a href="https://www.va.gov/disability/about-disability-ratings/" target="_blank" rel="noopener">About VA disability ratings (VA.gov)</a></li>
       </ul>
-      <p class="hint">Rates last checked against VA.gov: October 3, 2026. Rates change every December.</p>
+      <p class="hint">The calculator's math is checked against every cell of § 4.25 Table I and the worked examples in § 4.25, § 4.26, and on VA.gov. The code is open source: <a href="https://github.com/makoslayer13/va-ratings-calculator" target="_blank" rel="noopener">github.com/makoslayer13/va-ratings-calculator</a>.</p>
     </section>
+
+    <aside class="card author">
+      <h2>Who built this</h2>
+      <p><strong>Salty</strong> is a Navy veteran rated 100% Permanent and Total who runs the <a href="https://www.youtube.com/@SaltyandRated" target="_blank" rel="noopener">Salty &amp; Rated</a> YouTube channel. He shares his own VA claims experience and official public information. He isn't a VSO, attorney, or accredited claims agent.</p>
+    </aside>
   </main>
 
   <footer class="wrap foot">
-    <p>Built by a veteran, for veterans. Free and open source. Not a VA product.<br />
-    If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
+    <p><strong>Disclaimer:</strong> This is not legal or medical advice. This site is an assistant that uses public information, and it isn't affiliated with the U.S. Department of Veterans Affairs. Results are estimates.</p>
+    <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
   </footer>
+
+  <div class="sticky" id="sticky" hidden>
+    <span>VA rating <strong id="stickyRating">–</strong></span>
+    <span>Est. monthly <strong id="stickyPay">–</strong></span>
+    <a href="#results">See details ↓</a>
+  </div>
 
   <script type="module" src="../src/app.js"></script>
 </body>
