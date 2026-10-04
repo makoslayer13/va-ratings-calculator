@@ -122,3 +122,23 @@ export function calculate(disabilities) {
   }
   return { ...best, inputs: clean };
 }
+
+/**
+ * Next tier: smallest single additional rating (10–100) that moves the final
+ * VA rating up one 10% step. Uses the same official math as calculate().
+ * Also reports how close the current combined value is to rounding up
+ * (§ 4.25: a combined value ending in 5 rounds up, so tier T+10 starts at T+5).
+ */
+export function nextTier(disabilities) {
+  const current = calculate(disabilities);
+  if (current.final >= 100) return { current, nextRating: null };
+  const target = current.final + 10;
+  const roundsUpAt = target - 5;
+  for (let r = 10; r <= 100; r += 10) {
+    const trial = calculate([...disabilities, { rating: r, side: "none" }]);
+    if (trial.final >= target) {
+      return { current, nextRating: target, roundsUpAt, pointsNeeded: roundsUpAt - current.combined, additionalRatingNeeded: r, trial };
+    }
+  }
+  return { current, nextRating: target, roundsUpAt, pointsNeeded: roundsUpAt - current.combined, additionalRatingNeeded: null };
+}

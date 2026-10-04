@@ -30,14 +30,18 @@
     </section>
 
     <section class="card">
-      <h2>2. Your dependents <span class="opt">(for monthly pay)</span></h2>
+      <h2>2. Your dependents <span class="opt">(changes pay at 30% and up)</span></h2>
       <div class="grid">
-        <label><input type="checkbox" id="spouse" /> Spouse</label>
-        <label><input type="checkbox" id="spouseAA" disabled /> Spouse receives Aid and Attendance</label>
-        <label>Children under 18 <input type="number" id="u18" min="0" max="20" value="0" /></label>
-        <label>Children 18–23 in school <input type="number" id="school" min="0" max="20" value="0" /></label>
+        <label class="check"><input type="checkbox" id="spouse" /> Spouse</label>
+        <label class="check"><input type="checkbox" id="spouseAA" disabled /> Spouse receives Aid and Attendance</label>
         <label>Dependent parents
-          <select id="parents"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
+          <select id="parents"><option value="0">None</option><option value="1">1 parent</option><option value="2">2 parents</option></select>
+        </label>
+        <label>Children under 18
+          <select id="u18"></select>
+        </label>
+        <label>Children 18–23 in school
+          <select id="school"></select>
         </label>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { combinePair, combineRaw, toNearestTen, calculate } from "../src/calc.js";
+import { combinePair, combineRaw, toNearestTen, calculate, nextTier } from "../src/calc.js";
 import { monthlyPayment, BASIC } from "../src/rates.js";
 
 const tableI = JSON.parse(readFileSync(new URL("../data/cfr_4_25_table_i.json", import.meta.url)));
@@ -78,6 +78,32 @@ test("§ 4.26(d): result is never lower than leaving bilateral ratings out", () 
     const plain = calculate(set.map((d) => ({ rating: d.rating })));
     assert.ok(calculate(set).final >= plain.final);
   }
+});
+
+test("Next tier: 50% → 60% starts at combined 55; one more 10% gets there (50 & 10 = 55)", () => {
+  const n = nextTier([{ rating: 50 }]);
+  assert.equal(n.nextRating, 60);
+  assert.equal(n.roundsUpAt, 55);
+  assert.equal(n.pointsNeeded, 5);
+  assert.equal(n.additionalRatingNeeded, 10);
+});
+
+test("Next tier: 60 + 30 = 72 (VA 70%) → 80% needs 3 more points; +10% gives 75 → 80%", () => {
+  const n = nextTier([{ rating: 60 }, { rating: 30 }]);
+  assert.equal(n.current.combined, 72);
+  assert.equal(n.pointsNeeded, 3);
+  assert.equal(n.additionalRatingNeeded, 10);
+  assert.equal(n.trial.combined, 75);
+});
+
+test("Next tier: 90% needs an additional 50% to reach 100% (90 & 50 = 95 per Table I)", () => {
+  assert.equal(combinePair(90, 50), 95);
+  const n = nextTier([{ rating: 90 }]);
+  assert.equal(n.additionalRatingNeeded, 50);
+});
+
+test("Next tier: none above 100%", () => {
+  assert.equal(nextTier([{ rating: 100 }]).nextRating, null);
 });
 
 test("VA.gov example: 30%, spouse, no children/parents → $617.47", () => {
