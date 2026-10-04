@@ -7,7 +7,24 @@
   <meta name="description" content="Salty & Rated: a Navy veteran (100% P&T) sharing his VA claims experience, plus a free, unofficial VA combined rating and pay calculator." />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    :root{--navy:#001028;--gold:#e4b448;--text:#001028;--border:#d6d7d9;--gray-bg:#f1f1f1}
+    @font-face{font-family:"Oswald";src:url("fonts/oswald-latin.woff2") format("woff2");font-display:swap}
+    @font-face{font-family:"Inter";src:url("fonts/inter-latin.woff2") format("woff2");font-display:swap}
+    body{margin:0;font-family:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff;line-height:1.5}
+    .banner{background:var(--navy);color:#fff;padding:32px 0 28px;text-align:center;position:relative}
+    .banner::before{content:"";display:block;width:140px;height:20px;margin:0 auto 14px;background:var(--gold);border-radius:4px}
+    .banner h1{margin:0;font-family:"Oswald",sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.02em}
+    .sub{margin:0;opacity:0.95}
+    .alert{border-left:8px solid var(--gold);background:#fff8e6;padding:14px 18px;margin:20px 0;border-radius:0 6px 6px 0}
+    .card{border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin:16px 0;background:#fff}
+    .card h2{margin-top:0;color:var(--navy);font-family:"Oswald",sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-0.01em}
+    .btn-secondary{display:inline-block;background:#fff;color:var(--navy);border:2px solid var(--navy);font-weight:700;padding:10px 16px;border-radius:4px;text-decoration:none;font-family:"Oswald",sans-serif}
+    .btn-secondary:hover{background:var(--gray-bg)}
+    .btn-subscribe{display:inline-block;background:#cc0000;color:#fff;font-weight:700;padding:10px 20px;border-radius:4px;text-decoration:none;font-family:"Oswald",sans-serif;border:2px solid #cc0000}
+    a{color:var(--navy);text-decoration:none}
+    .wrap{max-width:860px;margin:0 auto;padding:0 16px}
+  </style>
 </head>
 <body>
   <header class="banner">
@@ -38,13 +55,12 @@
     </section>
 
     <div class="alert">
-      <strong>I'm not a VSO, attorney, or accredited claims agent.</strong> Nothing here is legal or medical advice. It's my personal experience and general public information. For help with your claim, talk to an accredited VSO, attorney, or claims agent. VSO help is free.
-      Not affiliated with the U.S. Department of Veterans Affairs. VA Benefits Hotline: <a href="tel:18008271000">800-827-1000</a> (TTY: 711).
+      <strong>I'm not a VSO, attorney, or accredited claims agent.</strong> Nothing here is legal or medical advice. It's my personal experience and general public information. For help with your claim, talk to an accredited VSO, attorney, or claims agent. VSO help is free. VA Benefits Hotline: <a href="tel:18008271000">800-827-1000</a> (TTY: 711).
     </div>
   </main>
 
   <footer class="wrap foot">
-    <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
+    <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">CrisisLine.net</a>, or text <strong>838255</strong>.</p>
     <p>You served. You deserve this.</p>
   </footer>
 </body>
