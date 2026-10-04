@@ -37,9 +37,9 @@ python3 -m http.server 8000   # then open http://localhost:8000
 3. Run the tests. They must all pass before you publish.
 
 ## Hosting
-Production: **Cloudflare Pages**, https://va-ratings-calculator-2ot.pages.dev, free plan. Commercial use (ads/affiliates) is allowed. It deploys automatically on every push to `main`.
+Production: **https://saltyandrated.com** (channel home) and **https://saltyandrated.com/calculator/** (the calculator), served by Cloudflare Pages project `va-ratings-calculator` on the free plan (fallback address: https://va-ratings-calculator-2ot.pages.dev). Commercial use (ads/affiliates) is allowed. It deploys automatically on every push to `main`.
 
-The GitHub Pages copy (https://makoslayer13.github.io/va-ratings-calculator/) must stay non-commercial under GitHub's [usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits). Turn it off before adding ads.
+GitHub Pages has been turned off. Hosting is Cloudflare only.
 
 If you add affiliate links or ads: disclose them next to the link, keep them out of the results area, and never promote paid VA-claims "consultants." Paid claims help is limited to VA-accredited reps under 38 U.S.C. § 5904.
 
