@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Disallow: /va-claims-prompt/unlocked/

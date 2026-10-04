@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free AI Prompt for VA Claims &amp; Evidence Work | Salty &amp; Rated</title>
+  <meta name="description" content="The exact Claude AI project instructions I use for VA disability claims research, evidence gap analysis, and drafting. Free, email required." />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../style.css?v=2" />
+  <style>
+    .teaser-wrap { position: relative; max-height: 340px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: #f9f9f9; padding: 20px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .85rem; white-space: pre-wrap; line-height: 1.6; }
+    .teaser-wrap::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: linear-gradient(to bottom, rgba(249,249,249,0), #f9f9f9 85%); }
+    .teaser-fade-blur { filter: blur(0.4px); opacity: .75; }
+    .signup-card { border: 2px solid var(--navy); }
+    .signup-form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .signup-form input[type=email] { flex: 1 1 240px; font-family: inherit; font-size: 1rem; padding: 10px 12px; border: 1px solid #565c65; border-radius: 4px; }
+    .signup-form button { background: var(--navy); color: #fff; border: 2px solid var(--navy); font-family: "Oswald", sans-serif; font-weight: 700; font-size: 1rem; padding: 10px 22px; border-radius: 4px; }
+    .signup-form button:hover { background: #002048; }
+    .err { background: #fde8e8; border-left: 4px solid #b50909; padding: 10px 14px; border-radius: 0 4px 4px 0; margin-top: 12px; font-size: .9rem; }
+    .privacy-note { font-size: .82rem; color: #5c5c5c; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Salty &amp; Rated</a> › <span>Free VA Claims AI Prompt</span></nav>
+      <h1>The AI Prompt I Use for VA Claims</h1>
+      <p class="sub">The full Claude "project instructions" I run for my own VA disability claims research, evidence analysis, and drafting. Free.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="formError"></div>
+
+    <section class="card">
+      <h2>What this is</h2>
+      <p>This is the exact project-level instruction set I give Claude (Anthropic's AI) before asking it anything about VA disability claims. It tells the AI to cite 38 CFR by section number instead of guessing, to check VA.gov and eCFR before answering, to flag when sources disagree, and to never estimate a rating percentage without the criteria in front of it. It also tells it plainly where its limits are — it's not a replacement for an accredited VSO, claims agent, or attorney.</p>
+      <p class="hint">Drop it into a Claude Project (or adapt it for ChatGPT/Gemini) and it changes how the AI handles this kind of work: sourced, cited, and honest about uncertainty instead of confidently wrong.</p>
+    </section>
+
+    <section class="card">
+      <h2>Preview</h2>
+      <div class="teaser-wrap teaser-fade-blur" id="teaserText"></div>
+    </section>
+
+    <section class="card signup-card result">
+      <h2>Get the full prompt, free</h2>
+      <p>Enter your email and the complete text unlocks instantly on the next page. I'll also use your email to let you know about new VA claims content and site updates — unsubscribe anytime, no spam.</p>
+      <form class="signup-form" action="/subscribe" method="POST">
+        <input type="email" name="email" placeholder="you@email.com" required maxlength="254" autocomplete="email" />
+        <button type="submit">Unlock the Prompt →</button>
+      </form>
+      <p class="privacy-note">No purchase, no credit card. I'm not a VSO, attorney, or accredited claims agent — this prompt is a research/drafting aid, not legal or medical advice.</p>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p><strong>Disclaimer:</strong> This is not legal or medical advice. It's general public information and a personal AI-use tip, not official VA guidance.</p>
+    <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var full = "# VA Claims Project \u2014 Master Statement\n\n## Purpose\n\nThis project supports VA disability compensation claims work: understanding the process, analyzing evidence, drafting documents, and tracking claims from filing through appeal.\n\nThe primary user is a US Navy Veteran...\n\n## Sourcing \u2014 this is the most important section\n\nAnswer from sources, not from memory. VA forms, rating criteria, presumptive lists, and appeal timelines change, and a confidently wrong answer here costs a veteran money and time.\n\n**Order of authority:**\n1. Project folder first \u2014 personal records, local CFR copy, reusable templates...\n2. Live VA and federal sources second \u2014 va.gov, ecfr.gov, M21-1, bva.va.gov...\n3. Everything else third, clearly labeled as secondary...";
+      document.getElementById("teaserText").textContent = full;
+
+      var params = new URLSearchParams(location.search);
+      var err = params.get("error");
+      if (err) {
+        var messages = {
+          invalid_email: "That doesn't look like a valid email address. Try again.",
+          subscribe_failed: "Something went wrong on our end. Please try again in a moment.",
+          not_configured: "Signup is temporarily unavailable. Please try again later.",
+          network_error: "Network hiccup \u2014 please try again.",
+          bad_request: "Something went wrong. Please try again."
+        };
+        var box = document.createElement("div");
+        box.className = "err";
+        box.textContent = messages[err] || "Something went wrong. Please try again.";
+        document.getElementById("formError").appendChild(box);
+      }
+    })();
+  </script>
+</body>
+</html>
