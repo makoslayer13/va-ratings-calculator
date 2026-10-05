@@ -19,6 +19,8 @@
   <meta name="twitter:image" content="https://saltyandrated.com/assets/og/og-banner.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="preload" href="fonts/oswald-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     :root{--navy:#001028;--gold:#e4b448;--text:#001028;--border:#d6d7d9;--gray-bg:#f1f1f1}
     @font-face{font-family:"Oswald";src:url("fonts/oswald-latin.woff2") format("woff2");font-display:swap}
@@ -78,6 +80,13 @@
   </main>
 
   <footer class="wrap foot">
+    <nav class="foot-nav" style="margin-bottom:12px;font-weight:600">
+      <a href="/" style="margin:0 8px;color:var(--navy);text-decoration:none">Home</a> •
+      <a href="/calculator/" style="margin:0 8px;color:var(--navy);text-decoration:none">VA Calculator</a> •
+      <a href="/va-claims-prompt/" style="margin:0 8px;color:var(--navy);text-decoration:none">AI Claims Prompt</a> •
+      <a href="/disclaimer/" style="margin:0 8px;color:var(--navy);text-decoration:none">Disclaimer</a> •
+      <a href="/privacy/" style="margin:0 8px;color:var(--navy);text-decoration:none">Privacy Policy</a>
+    </nav>
     <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">CrisisLine.net</a>, or text <strong>838255</strong>.</p>
     <p>You served. You deserve this.</p>
   </footer>

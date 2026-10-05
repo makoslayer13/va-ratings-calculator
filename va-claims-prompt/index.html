@@ -19,6 +19,8 @@
   <meta name="twitter:image" content="https://saltyandrated.com/assets/og/og-banner.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
   <link rel="icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="preload" href="../fonts/oswald-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css?v=2" />
   <style>
     .teaser-wrap { position: relative; max-height: 340px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: #f9f9f9; padding: 20px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .85rem; white-space: pre-wrap; line-height: 1.6; }
@@ -60,7 +62,8 @@
       <h2>Get the full prompt, free</h2>
       <p>Enter your email and the complete text unlocks instantly on the next page. I'll also use your email to let you know about new VA claims content and site updates — unsubscribe anytime, no spam.</p>
       <form class="signup-form" action="/subscribe" method="POST">
-        <input type="email" name="email" placeholder="you@email.com" required maxlength="254" autocomplete="email" />
+        <label for="emailInput" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
+        <input type="email" id="emailInput" name="email" placeholder="you@email.com" required maxlength="254" autocomplete="email" />
         <button type="submit">Unlock the Prompt →</button>
       </form>
       <p class="privacy-note">No purchase, no credit card. I'm not a VSO, attorney, or accredited claims agent — this prompt is a research/drafting aid, not legal or medical advice.</p>
@@ -68,6 +71,13 @@
   </main>
 
   <footer class="wrap foot">
+    <nav class="foot-nav" style="margin-bottom:12px;font-weight:600">
+      <a href="/" style="margin:0 8px;color:var(--navy);text-decoration:none">Home</a> •
+      <a href="/calculator/" style="margin:0 8px;color:var(--navy);text-decoration:none">VA Calculator</a> •
+      <a href="/va-claims-prompt/" style="margin:0 8px;color:var(--navy);text-decoration:none">AI Claims Prompt</a> •
+      <a href="/disclaimer/" style="margin:0 8px;color:var(--navy);text-decoration:none">Disclaimer</a> •
+      <a href="/privacy/" style="margin:0 8px;color:var(--navy);text-decoration:none">Privacy Policy</a>
+    </nav>
     <p><strong>Disclaimer:</strong> This is not legal or medical advice. It's general public information and a personal AI-use tip, not official VA guidance.</p>
     <p>If you're a veteran in crisis or concerned about one: dial <strong>988 then press 1</strong>, chat at <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">VeteransCrisisLine.net/Chat</a>, or text <strong>838255</strong>.</p>
   </footer>
