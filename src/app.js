@@ -127,10 +127,29 @@ function render() {
     const need = tier.additionalRatingNeeded
       ? `Under the § 4.25 math, one more rated condition at <b>${tier.additionalRatingNeeded}%</b> would bring your combined value to <b>${tier.trial.combined}</b>, which rounds to <b>${tier.nextRating}%</b>.`
       : `No single additional rating reaches ${tier.nextRating}% from here.`;
+    let videoCta = "";
+    if (r.final >= 80 && r.final < 100) {
+      videoCta = `
+        <div class="video-cta" style="background:#fff8e6;border:1px solid var(--gold);border-radius:6px;padding:14px 18px;margin:16px 0;">
+          <strong style="color:var(--navy);font-family:'Oswald',sans-serif;font-size:1.1rem;display:block;margin-bottom:4px;">Stuck at ${r.final}%? Here's why the math gets harder:</strong>
+          <p style="margin:0 0 10px;font-size:.9rem;">When your rating reaches 80% or 90%, each additional 10% condition only adds a tiny fraction toward your combined total. Watch how 38 CFR § 4.25 calculates "efficiency left":</p>
+          <a class="btn-secondary yt" href="https://www.youtube.com/watch?v=fNjjJ0Ez4wQ" target="_blank" rel="noopener" style="font-size:.85rem;padding:6px 14px;display:inline-block;text-decoration:none;">▶ Watch: The VA Trick Nobody Explains</a>
+          <a class="btn-subscribe" href="https://www.youtube.com/@SaltyandRated?sub_confirmation=1" target="_blank" rel="noopener" style="font-size:.85rem;padding:6px 14px;margin-left:8px;display:inline-block;text-decoration:none;">Subscribe</a>
+        </div>`;
+    } else if (r.bilateral) {
+      videoCta = `
+        <div class="video-cta" style="background:#fff8e6;border:1px solid var(--gold);border-radius:6px;padding:14px 18px;margin:16px 0;">
+          <strong style="color:var(--navy);font-family:'Oswald',sans-serif;font-size:1.1rem;display:block;margin-bottom:4px;">Bilateral Factor Applied (§ 4.26)</strong>
+          <p style="margin:0 0 10px;font-size:.9rem;">Because you have qualifying disabilities affecting both limbs, the VA adds an extra 10% boost to those conditions before combining them with the rest of your body.</p>
+          <a class="btn-secondary yt" href="https://www.youtube.com/@SaltyandRated" target="_blank" rel="noopener" style="font-size:.85rem;padding:6px 14px;display:inline-block;text-decoration:none;">▶ Watch More VA Explanations on YouTube</a>
+        </div>`;
+    }
+
     tierHtml = `
       <p>Your combined value is <b>${r.combined}</b>. ${tier.nextRating}% starts at a combined value of <b>${tier.roundsUpAt}</b>, which is <b>${tier.pointsNeeded} point${tier.pointsNeeded === 1 ? "" : "s"}</b> away.</p>
       <p>${need}</p>
       <p>Estimated pay at ${tier.nextRating}% with the same dependents: <b>${money(nextPay)}</b>/month (<b>+${money(nextPay - pay.total)}</b>).</p>
+      ${videoCta}
       <p class="hint">This only shows how the math works. Ratings are based on medical evidence, not on what's needed to reach a number.</p>`;
   }
 
